@@ -1,5 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400&display=swap');
 
+/*Dark Theme Added*/
+html {
+  background-color: #03171f;
+}
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -8,6 +13,26 @@
 
 body {
   font-family: 'Poppins', sans-serif;
+}
+
+h3 {
+  color: white;
+}
+
+h1 {
+  color: white;
+}
+
+p {
+  color: white;
+}
+
+label {
+  color: white;
+}
+
+span {
+  color: white;
 }
 
 .container {
@@ -27,10 +52,12 @@ body {
   margin-bottom: 20px;
 }
 
+/* better looking save task buttton */
+
 .btn {
   display: inline-block;
-  background: #000;
-  color: #fff;
+  background: #0079F2;
+  color: #FCFCFC;
   border: none;
   padding: 10px 20px;
   margin: 5px;
@@ -39,6 +66,11 @@ body {
   text-decoration: none;
   font-size: 15px;
   font-family: inherit;
+  transition: background-color 0.2s, transform 0.2s;
+}
+
+.btn:hover {
+  background-color: #57ABFF;
 }
 
 .btn:focus {
@@ -54,8 +86,9 @@ body {
   width: 100%;
 }
 
+/*Animate toggling reminder*/
 .task {
-  background: #f4f4f4;
+  background: rgb(4, 0, 44);
   margin: 5px;
   padding: 10px 20px;
   cursor: pointer;
@@ -64,6 +97,8 @@ body {
   -ms-user-select: none;
   user-select: none;
   -webkit-user-drag: none;
+  transition: border-left 0.2s, left 0.2s;
+  border: 0px solid green;
 }
 
 .task.reminder {
@@ -74,6 +109,20 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+}
+
+/* Dark theme for form inputs and changed to input type date */
+
+input[type=text], input[type=date] {
+  background-color: rgb(39, 48, 71);
+  color: white;
+  transition: background-color 0.2s;
+  border: none;
+}
+
+input[type=text]:focus, input[type=date]:focus {
+  outline: none;
+  background-color: rgb(57, 70, 104);
 }
 
 .add-form {
@@ -109,6 +158,21 @@ body {
 .form-control-check input {
   flex: 2;
   height: 20px;
+}
+
+/*More user friendly checkboxes*/
+
+input[type=checkbox] {
+  transition: opacity 0.2s;
+}
+
+input[type=checkbox]:hover {
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+input[type=checkbox]:focus {
+  outline: none;
 }
 
 footer {
