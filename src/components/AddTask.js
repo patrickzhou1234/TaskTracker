@@ -4,6 +4,8 @@ const AddTask = ({ onAdd }) => {
     const [text, setText] = useState('');
     const [day, setDay] = useState('');
     const [reminder, setReminder] = useState(false);
+    const [important, setImportant] = useState(false);
+    //added an improtant const
 
     const onSubmit = function(e) {
         e.preventDefault();
@@ -12,11 +14,13 @@ const AddTask = ({ onAdd }) => {
             return;
         }
 
-        onAdd({text, day, reminder})
+        onAdd({text, day, reminder, important})
 
         setText('');
         setDay('');
         setReminder(false);
+        setImportant(false);
+        //added an important boolean
     }
 
   return (
@@ -33,9 +37,14 @@ const AddTask = ({ onAdd }) => {
             <label>Set Reminder</label>
             <input checked={reminder} type="checkbox" onChange={(e) => setReminder(e.currentTarget.checked)} />
         </div>
+        <div className='form-control'>
+            <label>Mark as Important</label>
+            <input checked={important} type="checkbox" onChange={(e) => setImportant(e.currentTarget.checked)} />
+        </div>
         <input type="submit" value='Save Task' className='btn btn-block'/>
     </form>
   )
 }
+//added a mark as important tag
 
 export default AddTask
