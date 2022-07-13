@@ -80,7 +80,11 @@ function App() {
 
   const clearTask = async function() {
     const postidarr = tasks.map((task) => task.id);
-    postidarr.forEach((id) => deleteTask(id))
+    postidarr.forEach(async (id) => {
+      await fetch(`http://localhost/tasks/${id}`, {
+        method: 'DELETE',
+      });
+    });
     setTasks([]);
   }
   
