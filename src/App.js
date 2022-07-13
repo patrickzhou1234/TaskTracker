@@ -53,6 +53,7 @@ function App() {
     await fetch(`http://localhost/tasks/${id}`, {
       method: 'DELETE',
     });
+    
 
     setTasks(tasks.filter((task) => task.id!== id));
   }
@@ -76,33 +77,19 @@ function App() {
 
     setTasks(tasks.map((task) => task.id === id ? {...task, reminder: data.reminder} : task));
   }
-//added this, it is essentially the same as the reminder code above
-  const toggleImportant = async function(id) {
-    const tasktoToggle = await fetchTask(id);
-    const updTask = {
-      ...tasktoToggle,
-      important: !tasktoToggle.important
-    }
 
-    const res = await fetch(`http://localhost/tasks/${id}`, {
-      method: 'PUT',
-      headers: {
-        'Content-type': 'application/json'
-      },
-      body: JSON.stringify(updTask)
-    })
-
-    const data = await res.json();
-
-    setTasks(tasks.map((task) => task.id === id ? {...task, important: data.important} : task));
+  const clearTask = async function() {
+    const postidarr = tasks.map((task) => task.id);
+    postidarr.forEach((id) => deleteTask(id))
+    setTasks([]);
   }
-
+  
   return (
     <div className='container'>
-        <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} title="Task Tracker" />
+        <Header onAdd={() => setShowAddTask(!showAddTask)} showAdd={showAddTask} title="Task Tracker" onClear={clearTask} />
         {showAddTask && <AddTask onAdd={addTask}></AddTask>}
-        {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder} onToggle2={toggleImportant}></Tasks>) : ('No Tasks To Show')}
-        <Footer></Footer>        
+        {tasks.length > 0 ? (<Tasks tasks={tasks} onDelete={deleteTask} onToggle={toggleReminder}></Tasks>) : <span>No Tasks To Show</span>}
+        <Footer></Footer>
     </div>
   );
 }
